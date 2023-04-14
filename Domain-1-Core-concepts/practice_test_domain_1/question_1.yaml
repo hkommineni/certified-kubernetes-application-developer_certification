@@ -1,0 +1,13 @@
+# Question 1: Creating a Single Container Pods
+# a. Create a pod with the name of kplabs-nginx.
+# b. The pod should be launched from an image of  mykplabs/kubernetes:nginx
+# c. The name of the container should be mycontainer
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kplabs-nginx
+spec:
+  containers:
+    - name: mycontainer
+      image: mykplabs/kubernetes:nginx
