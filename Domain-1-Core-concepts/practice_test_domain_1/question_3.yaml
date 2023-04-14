@@ -1,0 +1,16 @@
+# Question 3: Exposing Ports for PODS
+
+# Create a pod with the name of kplabs-ports.
+# The pod should be launched from an image of nginx The name of the container should be nginx.
+# Expose Port 80 for the POD.
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kplabs-ports
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      ports:
+        - containerPort: 80

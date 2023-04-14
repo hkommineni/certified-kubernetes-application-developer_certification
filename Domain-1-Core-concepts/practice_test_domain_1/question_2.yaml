@@ -1,0 +1,19 @@
+# Question 2: Commands and Arguments
+
+# Create a pod with the name of kplabs-cmdargs.
+# The pod should be launched from an image of busybox.
+# The name of the container should be cmdcontainer.
+# Both the container image's CMD and ENTRYPOINT instruction should be overridden.
+
+# The container should start with sleep command and argument of 3600
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kplabs-cmdargs
+spec:
+  containers:
+    - image: busybox
+      name: cmdcontainer
+      command: ["sleep"]
+      args: ["3600"]
