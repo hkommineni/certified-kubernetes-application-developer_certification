@@ -1,0 +1,43 @@
+# Question 3: Deployments - Rolling Updates and Rollbacks
+
+# Create a deployment named kplabs-updates.
+# The deployment should be launched from nginx image.
+# There should be two  replicas.
+# Verify the status of the deployment.
+  # kubectl get deployments
+
+# As part of rolling update, update the image to nginx2:alpine.
+  # kubectl edit deployment kplabs-updates
+  # change the image name
+
+  # kubectl set image deployment kplabs-updates kplabs-updates=nginx2:alpine --record=true
+
+# Verify the status of deployment.
+  # kubectl get deployments
+
+# Perform a rollback to the previous version.
+  # kubectl rollout undo deployment kplabs-updates
+
+# Verify the status of deployment.
+  # kubectl describe deployment kplabs-updates
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx
+  name: kplabs-updates
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx
+        name: kplabs-updates
+

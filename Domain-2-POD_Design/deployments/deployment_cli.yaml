@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hk-deployment
+  name: hk-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hk-deployment
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: hk-deployment
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+status: {}

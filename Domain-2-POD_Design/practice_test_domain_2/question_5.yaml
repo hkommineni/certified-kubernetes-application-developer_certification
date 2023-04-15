@@ -1,0 +1,27 @@
+# Question 5:  CronJob
+
+# Create a job named kplabs-job.
+# The job should run every minute and should print out the current date.
+  # kubectl get pods
+  # kubectl logs [pod-name]
+
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: kplabs-job
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - image: busybox
+            name: hello
+            args:
+              - /bin/sh
+              - -c
+              - date;
+          restartPolicy: OnFailure
+
+

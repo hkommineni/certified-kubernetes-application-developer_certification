@@ -1,0 +1,42 @@
+# Question 7:  Deployment Configuration
+
+# Create a deployment named kplabs-configuration. The deployment should have 3 replicas of nginx image.
+  # kubectl create deployment kplabs-configuration --replicas=3 --image=nginx -o yaml > .\question_7.yaml
+
+# Once the deployment is created, verify the maxSurge and maxUnavailable parameters.
+  # kubectl get deployment kplabs-configuration -o yaml
+
+# Edit the the maxUnavailable to 0 and maxSurge to 30% on the live deployment object.
+  # kubectl edit deployment kplabs-configuration
+
+# Once those two parameters are modified, change the image of the deployment to nginx:alpine.
+  # kubectl set image deployment kplabs-configuration nginx:alpine --record
+
+# Make sure to use the record instruction on rolling updates.
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kplabs-configuration
+  name: kplabs-configuration
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kplabs-configuration
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: kplabs-configuration
+    spec:
+      containers:
+      - image: nginx
+        imagePullPolicy: Always
+        name: nginx

@@ -1,0 +1,30 @@
+# Create a deployment named kplabs-selector.
+# The pods should be launched from nginx image.
+# The pods should only be launched in a node which has a label of disk=ssd.
+        # nodeSelector:
+        # disk: ssd
+#  Observe the status of deployment.
+#  Add the appropriate label to the worker node and then observe the status of the deployment.
+  # kubectl label nodes <your-node-name> disktype=ssd
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kplabs-selector
+  name: kplabs-selector
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kplabs-selector
+  template:
+    metadata:
+      labels:
+        app: kplabs-selector
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+      nodeSelector:
+        disk: ssd
