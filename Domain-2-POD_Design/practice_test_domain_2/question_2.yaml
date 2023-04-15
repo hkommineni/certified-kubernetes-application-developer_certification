@@ -1,0 +1,25 @@
+# Question 2: Deployments
+
+# Create a deployment named kplabs-deployment.
+# The deployment should be launched from nginx image.
+# The deployment should have three replicas.
+# The selector should be based on the label of app=nginx
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx
+  name: kplabs-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx
+        name: kplabs-deployment

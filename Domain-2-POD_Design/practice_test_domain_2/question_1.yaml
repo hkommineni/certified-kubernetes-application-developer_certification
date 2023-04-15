@@ -1,0 +1,20 @@
+# Question 1: Labels
+
+# Create a pod named kplabs-label.
+# The pod should be launched from nginx image.
+# The name of container should be nginx-container.
+# Attach following label to the pod.
+
+# env=production
+# app=webserver
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kplabs-label
+  labels:
+    env: production
+    app: webserver
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
